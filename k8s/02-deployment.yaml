@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lightspeed-app
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: lightspeed-app
+  template:
+    metadata:
+      labels:
+        app: lightspeed-app
+    spec:
+      containers:
+        - name: lightspeed-app
+          image: kirandeeprana/lightspeed-app
+          ports:
+            - containerPort: 8080
+          env: # Setting Environmental Variables
+            - name: DB_HOST   # Setting Database host address
+              value: mysql
+            - name: DB_NAME  # Setting Database name
+              value: lightspeeddb
+            - name: DB_USERNAME  # Setting Database username
+              value: root
+            - name: DB_PASSWORD # Setting Database password
+              value: password
+      imagePullSecrets:
+        - name: regcred

@@ -1,0 +1,17 @@
+apiVersion: skaffold/v2beta19
+kind: Config
+metadata:
+  name: lightspeed-app
+build:
+  artifacts:
+  - image: kirandeeprana/lightspeed-app
+    docker:
+      dockerfile: Dockerfile
+    context: .
+  tagPolicy:
+    sha256: {}
+deploy:
+  kubectl:
+    manifests:
+    - k8s/*
+

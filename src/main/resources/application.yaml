@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    #username: root
+    #url: jdbc:mysql://localhost:3306/lightspeed?allowPublicKeyRetrieval=true&useSSL=false
+    #password: password
+
+    username: ${DB_USERNAME}
+    url: jdbc:mysql://${DB_HOST}/${DB_NAME}?allowPublicKeyRetrieval=true&useSSL=false
+    password: ${DB_PASSWORD}
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: 'true'
+        show_sql: 'true'
+    hibernate:
+      ddl-auto: update
+page:
+  defaultSize: '1000'
+
+lightspeed:
+  app:
+    jwtSecret: $2a$12$.xtzsWQBzX2n2uYNrqKtReKgRXLBU0y9f8xjJjkncUokFIdRXest6 #should be saved on server and loaded by keystore
+    jwtExpirationMs: 99999  # Should be short-lived
